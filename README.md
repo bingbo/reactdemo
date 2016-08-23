@@ -1,5 +1,5 @@
-# React Examples
+# React Demo
 
-Here are some small React demos. Some use [JSX](https://facebook.github.io/react/docs/jsx-in-depth.html) and some include third-party library integration.
+利用react学习开发的一个demo
 
-For more fully-featured examples, check out [React TodoMVC](http://todomvc.com/examples/react/) and [React + Backbone TodoMVC](http://todomvc.com/examples/react-backbone/).
+具体可参考 [官网](https://facebook.github.io/react/).
