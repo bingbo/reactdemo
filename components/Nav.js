@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router'
 
-class Nav extends Component {
+export default class Nav extends Component {
     render(){
         return(
             <nav id="w0" className="navbar-inverse  navbar" role="navigation">
@@ -30,4 +30,3 @@ class Nav extends Component {
     }
 }
 
-export default Nav
