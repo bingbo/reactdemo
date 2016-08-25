@@ -6,11 +6,20 @@ import App from './../modules/App'
 import About from './../modules/About'
 import Contact from './../modules/Contact'
 import Login from './../modules/Login'
+import User from './../modules/User'
+import PageHeader from '../components/PageHeader'
 
+
+/*
+ * 首页默认展现组件
+ */
 const Dashboard = React.createClass({
     render:function(){
         return (
-            <div>Welcome to the react demo!</div>
+            <div>
+                <PageHeader title={'Home  '} subTitle={'react demo'}/>
+
+            </div>
         );
     }        
 })
@@ -26,11 +35,12 @@ const routeConfig = [
         childRoutes: [
             {path: 'about', component: About},
             {path: 'contact', component: Contact},
-            {path: 'Login', component: Login}
+            {path: 'login', component: Login},
+            {path: 'user', component: User}
         ]
     }
 ]
-ReactDOM.render(<Router routes={routeConfig}/>, document.body)
+ReactDOM.render(<Router history={hashHistory} routes={routeConfig}/>, document.getElementById('container'))
 
 /*
 ReactDOM.render(

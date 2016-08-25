@@ -72,8 +72,19 @@
 
 	var _Login2 = _interopRequireDefault(_Login);
 
+	var _User = __webpack_require__(228);
+
+	var _User2 = _interopRequireDefault(_User);
+
+	var _PageHeader = __webpack_require__(225);
+
+	var _PageHeader2 = _interopRequireDefault(_PageHeader);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	/*
+	 * 首页默认展现组件
+	 */
 	var Dashboard = _react2.default.createClass({
 	    displayName: 'Dashboard',
 
@@ -81,7 +92,7 @@
 	        return _react2.default.createElement(
 	            'div',
 	            null,
-	            'Welcome to the react demo!'
+	            _react2.default.createElement(_PageHeader2.default, { title: 'Home  ', subTitle: 'react demo' })
 	        );
 	    }
 	});
@@ -93,9 +104,9 @@
 	    path: '/',
 	    component: _App2.default,
 	    indexRoute: { component: Dashboard },
-	    childRoutes: [{ path: 'about', component: _About2.default }, { path: 'contact', component: _Contact2.default }, { path: 'Login', component: _Login2.default }]
+	    childRoutes: [{ path: 'about', component: _About2.default }, { path: 'contact', component: _Contact2.default }, { path: 'login', component: _Login2.default }, { path: 'user', component: _User2.default }]
 	}];
-	_reactDom2.default.render(_react2.default.createElement(_reactRouter.Router, { routes: routeConfig }), document.body);
+	_reactDom2.default.render(_react2.default.createElement(_reactRouter.Router, { history: _reactRouter.hashHistory, routes: routeConfig }), document.getElementById('container'));
 
 	/*
 	ReactDOM.render(
@@ -25452,12 +25463,15 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _Nav = __webpack_require__(223);
+	var _NavBar = __webpack_require__(223);
 
-	var _Nav2 = _interopRequireDefault(_Nav);
+	var _NavBar2 = _interopRequireDefault(_NavBar);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	/**
+	 * 整体APP模块布局
+	 */
 	exports.default = _react2.default.createClass({
 	    displayName: 'App',
 
@@ -25465,7 +25479,7 @@
 	        return _react2.default.createElement(
 	            'div',
 	            null,
-	            _react2.default.createElement(_Nav2.default, null),
+	            _react2.default.createElement(_NavBar2.default, null),
 	            _react2.default.createElement(
 	                'div',
 	                { className: 'container' },
@@ -25501,16 +25515,16 @@
 
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-	var Nav = function (_Component) {
-	    _inherits(Nav, _Component);
+	var NavBar = function (_Component) {
+	    _inherits(NavBar, _Component);
 
-	    function Nav() {
-	        _classCallCheck(this, Nav);
+	    function NavBar() {
+	        _classCallCheck(this, NavBar);
 
-	        return _possibleConstructorReturn(this, Object.getPrototypeOf(Nav).apply(this, arguments));
+	        return _possibleConstructorReturn(this, Object.getPrototypeOf(NavBar).apply(this, arguments));
 	    }
 
-	    _createClass(Nav, [{
+	    _createClass(NavBar, [{
 	        key: 'render',
 	        value: function render() {
 	            return _react2.default.createElement(
@@ -25581,6 +25595,15 @@
 	                                    { to: '/login' },
 	                                    'Login'
 	                                )
+	                            ),
+	                            _react2.default.createElement(
+	                                'li',
+	                                null,
+	                                _react2.default.createElement(
+	                                    _reactRouter.Link,
+	                                    { to: '/user' },
+	                                    'User'
+	                                )
 	                            )
 	                        )
 	                    )
@@ -25589,10 +25612,10 @@
 	        }
 	    }]);
 
-	    return Nav;
+	    return NavBar;
 	}(_react.Component);
 
-	exports.default = Nav;
+	exports.default = NavBar;
 
 /***/ },
 /* 224 */
@@ -25614,6 +25637,9 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	/**
+	 * About模块
+	 */
 	exports.default = _react2.default.createClass({
 	    displayName: 'About',
 
@@ -25678,6 +25704,9 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	/**
+	 * Contact模块
+	 */
 	exports.default = _react2.default.createClass({
 	    displayName: 'Contact',
 
@@ -25706,11 +25735,273 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	/**
+	 * Login模块
+	 */
 	exports.default = _react2.default.createClass({
 	    displayName: 'Login',
 
 	    render: function render() {
 	        return _react2.default.createElement(_PageHeader2.default, { title: 'Login  ', subTitle: 'input your infomation and login' });
+	    }
+	});
+
+/***/ },
+/* 228 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _PageHeader = __webpack_require__(225);
+
+	var _PageHeader2 = _interopRequireDefault(_PageHeader);
+
+	var _Table = __webpack_require__(231);
+
+	var _Table2 = _interopRequireDefault(_Table);
+
+	var _Form = __webpack_require__(230);
+
+	var _Form2 = _interopRequireDefault(_Form);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var cdata = [{ id: 1, name: 'bill zhang', password: '111', email: 'bill@126.com' }, { id: 2, name: 'bing', password: '222', email: 'bing@gmail.com' }];
+	var cfields = ['id', 'name', 'password', 'email'];
+	/**
+	 * About模块
+	 */
+	exports.default = _react2.default.createClass({
+	    displayName: 'User',
+
+	    loadUsersFromServer: function loadUsersFromServer() {
+	        /*
+	        $.ajax({
+	            url:this.props.url,
+	            dataType:'jsonp',
+	            jsonp:'jsoncallback',
+	            cache:false,
+	            success:function(data){
+	                this.setState({data:data});
+	            }.bind(this),
+	            error:function(xhr,status,err){
+	                console.error(this.props.url,status,err.toString());
+	            }.bind(this)
+	        });                  
+	        */
+	        this.setState({ data: cdata });
+	    },
+	    /*表意提交*/
+	    handleUserSubmit: function handleUserSubmit(user) {
+	        var users = this.state.data;
+	        var newUsers = users.concat([user]);
+	        cdata.push(user);
+	        this.setState({ data: newUsers });
+	        /*再同步到服务端*/
+	    },
+	    /*在组件挂载之前调用一次。返回值将会作为 this.state 的初始值*/
+	    getInitialState: function getInitialState() {
+	        return { data: cdata, fields: cfields };
+	    },
+	    render: function render() {
+	        return _react2.default.createElement(
+	            'div',
+	            null,
+	            _react2.default.createElement(_PageHeader2.default, { title: 'User  ', subTitle: 'users informations' }),
+	            _react2.default.createElement(_Table2.default, { data: this.state.data, fields: this.state.fields }),
+	            _react2.default.createElement(_Form2.default, { onSubmit: this.handleUserSubmit })
+	        );
+	    }
+	});
+
+/***/ },
+/* 229 */,
+/* 230 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	/**
+	 * 用extends Component的方式不能获取this.refs的值
+	 */
+	//export default class Form extends React.Component{
+	exports.default = _react2.default.createClass({
+	    displayName: 'Form',
+
+	    /*提交处理*/
+	    handleSubmit: function handleSubmit(e) {
+	        e.preventDefault();
+	        var data = {};
+	        for (var ref in this.refs) {
+	            data[ref] = this.refs[ref].value.trim();
+	            this.refs[ref].value = '';
+	        }
+
+	        this.props.onSubmit(data);
+	        return;
+	    },
+	    render: function render() {
+	        return _react2.default.createElement(
+	            'form',
+	            { className: 'form-inline', onSubmit: this.handleSubmit },
+	            _react2.default.createElement(
+	                'div',
+	                { className: 'form-group' },
+	                _react2.default.createElement('input', { type: 'text', className: 'form-control', placeholder: 'Id', ref: 'id' })
+	            ),
+	            _react2.default.createElement(
+	                'div',
+	                { className: 'form-group' },
+	                _react2.default.createElement('input', { type: 'text', className: 'form-control', placeholder: 'Name', ref: 'name' })
+	            ),
+	            _react2.default.createElement(
+	                'div',
+	                { className: 'form-group' },
+	                _react2.default.createElement('input', { type: 'password', className: 'form-control', placeholder: 'Password', ref: 'password' })
+	            ),
+	            _react2.default.createElement(
+	                'div',
+	                { className: 'form-group' },
+	                _react2.default.createElement('input', { type: 'email', className: 'form-control', placeholder: 'Email', ref: 'email' })
+	            ),
+	            _react2.default.createElement('input', { type: 'submit', className: 'btn btn-default', value: 'Post' })
+	        );
+	    }
+	});
+
+/***/ },
+/* 231 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _Row = __webpack_require__(232);
+
+	var _Row2 = _interopRequireDefault(_Row);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = _react2.default.createClass({
+	    displayName: 'Table',
+
+
+	    render: function render() {
+	        var fields = this.props.fields;
+	        var datas = this.props.data.map(function (item) {
+	            var arr = [];
+	            for (var i = 0; i < fields.length; i++) {
+	                arr.push(item[fields[i]]);
+	            }
+	            return arr;
+	        });
+	        /**说是数组每个元素得有一个key属性**/
+	        var i = 0;
+	        var rowNodes = datas.map(function (row) {
+	            return _react2.default.createElement(_Row2.default, { key: i++, data: row });
+	        });
+	        return _react2.default.createElement(
+	            'table',
+	            { className: 'table table-striped' },
+	            _react2.default.createElement(
+	                'thead',
+	                null,
+	                _react2.default.createElement(_Row2.default, { data: this.props.fields })
+	            ),
+	            _react2.default.createElement(
+	                'tbody',
+	                null,
+	                rowNodes
+	            )
+	        );
+	    }
+	});
+
+/***/ },
+/* 232 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _Column = __webpack_require__(233);
+
+	var _Column2 = _interopRequireDefault(_Column);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = _react2.default.createClass({
+	    displayName: 'Row',
+
+	    render: function render() {
+	        var colNodes = this.props.data.map(function (cls) {
+	            return _react2.default.createElement(_Column2.default, { key: cls, data: cls });
+	        });
+	        return _react2.default.createElement(
+	            'tr',
+	            null,
+	            colNodes
+	        );
+	    }
+	});
+
+/***/ },
+/* 233 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	exports.default = _react2.default.createClass({
+	    displayName: 'Column',
+
+	    render: function render() {
+	        return _react2.default.createElement(
+	            'td',
+	            null,
+	            this.props.data
+	        );
 	    }
 	});
 

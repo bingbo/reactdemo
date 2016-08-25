@@ -1,11 +1,14 @@
 import React from 'react'
-import Nav from '../components/Nav'
+import NavBar from '../components/NavBar'
 
+/**
+ * 整体APP模块布局
+ */
 export default React.createClass({
     render:function(){
         return(
             <div>
-                <Nav />
+                <NavBar />
                 <div className="container">
                     {this.props.children}
                 </div>
